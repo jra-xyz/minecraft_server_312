@@ -79,5 +79,5 @@ resource "aws_ecs_service" "minecraft" {
     assign_public_ip = true
   }
 
-  depends_on = [aws_efs_mount_target.minecraft]
+  depends_on = [time_sleep.efs_ready]
 }

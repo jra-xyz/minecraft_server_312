@@ -157,7 +157,7 @@ The output should be just the IP.
 Verify reachability with nmap (from your local machine):
 
 ```bash
-nmap -sV -Pn -p 25565 
+nmap -sV -Pn -p 25565 <paste-ip-here> 
 ```
 
 A successful response will look like:

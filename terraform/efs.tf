@@ -13,3 +13,8 @@ resource "aws_efs_mount_target" "minecraft" {
   subnet_id       = each.value
   security_groups = [aws_security_group.efs.id]
 }
+
+resource "time_sleep" "efs_ready" {
+  depends_on      = [aws_efs_mount_target.minecraft]
+  create_duration = "90s"
+}
