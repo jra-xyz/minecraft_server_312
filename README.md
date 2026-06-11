@@ -141,13 +141,8 @@ Alternatively, to get the public IP via the AWS CLI run:
 
 ```bash
 TASK=$(aws ecs list-tasks --cluster minecraft-cluster --query 'taskArns[0]' --output text)
-
-ENI=$(aws ecs describe-tasks --cluster minecraft-cluster --tasks $TASK \
-  --query 'tasks[0].attachments[0].details[?name==`networkInterfaceId`].value' \
-  --output text)
-
-aws ec2 describe-network-interfaces --network-interface-ids $ENI \
-  --query 'NetworkInterfaces[0].Association.PublicIp' --output text
+ENI=$(aws ecs describe-tasks --cluster minecraft-cluster --tasks $TASK --query 'tasks[0].attachments[0].details[?name==`networkInterfaceId`].value' --output text)
+aws ec2 describe-network-interfaces --network-interface-ids $ENI --query 'NetworkInterfaces[0].Association.PublicIp' --output text
 ```
 
 What each step does:
